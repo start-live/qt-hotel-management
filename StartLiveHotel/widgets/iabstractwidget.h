@@ -10,6 +10,18 @@
 
 #include <QtWidgets/qwidget.h>
 
+#define I_INSTANCE(ptr, Class, parent) \
+    ptr = new Class(parent); \
+    if (ptr == nullptr) \
+        return false; \
+
+#define I_RELEASE(ptr) \
+    if (ptr != nullptr) \
+    { \
+        delete ptr; \
+        ptr = nullptr; \
+    } \
+
 class IAbstractWidget : public QWidget
 {
     Q_OBJECT

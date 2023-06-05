@@ -1,7 +1,9 @@
 #用户界面层
 
 HEADERS += \
-    $$PWD/iabstractwidget.h
+    $$PWD/iabstractwidget.h \
+    $$PWD/ikeywordwidget.h
 
 SOURCES += \
-    $$PWD/iabstractwidget.cpp
+    $$PWD/iabstractwidget.cpp \
+    $$PWD/ikeywordwidget.cpp
