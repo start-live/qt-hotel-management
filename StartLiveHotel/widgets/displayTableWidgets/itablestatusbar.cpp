@@ -26,6 +26,9 @@ ITableStatusBar::ITableStatusBar(QWidget *parent)
     m_pJumpToLabel = nullptr;
     m_pJumpPageSpinBox = nullptr;
     m_pJumpButton = nullptr;
+
+    //初始化界面
+    this->setupUi();
 }
 
 ITableStatusBar::~ITableStatusBar()
@@ -195,6 +198,7 @@ void ITableStatusBar::objectNameSetting()
     m_pJumpToLabel->setObjectName("JumpToLabel");
     m_pJumpPageSpinBox->setObjectName("JumpPageSpinBox");
     m_pJumpButton->setObjectName("JumpButton");
+    this->setObjectName("TableStatusBar");
 }
 
 bool ITableStatusBar::decorate()

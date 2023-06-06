@@ -8,7 +8,7 @@
 #ifndef IKEYWORDWIDGET_H
 #define IKEYWORDWIDGET_H
 
-#include "iabstractwidget.h"
+#include "widgets/iabstractwidget.h"
 
 class QHBoxLayout;
 class QLabel;

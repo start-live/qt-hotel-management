@@ -8,7 +8,7 @@
 #ifndef ITABLESTATUSBAR_H
 #define ITABLESTATUSBAR_H
 
-#include "iabstractwidget.h"
+#include "widgets/iabstractwidget.h"
 
 class QHBoxLayout;
 class QSpacerItem;

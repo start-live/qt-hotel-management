@@ -86,11 +86,14 @@ void IRangeRecordWidget::objectNameSetting()
     m_pCurrentValueLabel->setObjectName("CurrentValueLabel");
     m_pLsolationLineLabel->setObjectName("LsolationLineLabel");
     m_pTotalValueLabel->setObjectName("TotalValueLabel");
+    this->setObjectName("RangeRecordWidget");
 }
 
 bool IRangeRecordWidget::decorate()
 {
+    m_pCurrentValueLabel->setText("0");
     m_pLsolationLineLabel->setText("/");
+    m_pTotalValueLabel->setText("0");
     this->setAttribute(Qt::WidgetAttribute::WA_StyledBackground);
     return true;
 }

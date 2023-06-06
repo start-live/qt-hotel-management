@@ -8,7 +8,7 @@
 #ifndef IRANGERECORDWIDGET_H
 #define IRANGERECORDWIDGET_H
 
-#include "iabstractwidget.h"
+#include "widgets/iabstractwidget.h"
 
 class QHBoxLayout;
 class QLabel;

@@ -45,7 +45,7 @@ bool IKeywordWidget::retranslateUi()
     if (m_pMainLayout == nullptr)
         return false;
 
-    m_pKeywordLabel->setText(this->tr("关键词"));
+    m_pKeywordLabel->setText(this->tr("关键词："));
     m_pKeywordLineEdit->setPlaceholderText(this->tr("请输入关键词"));
     m_pSearchButton->setText(this->tr("查找"));
 
@@ -82,6 +82,7 @@ void IKeywordWidget::objectNameSetting()
     m_pKeywordLabel->setObjectName("KeywordLabel");
     m_pKeywordLineEdit->setObjectName("KeywordLineEdit");
     m_pSearchButton->setObjectName("SearchButton");
+    this->setObjectName("KeywordWidget");
 }
 
 bool IKeywordWidget::decorate()
