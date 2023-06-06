@@ -10,6 +10,9 @@ IDataOperationWidget::IDataOperationWidget(QWidget *parent)
     m_pUpdateButton = nullptr;
     m_pDeleteButton = nullptr;
     m_pDetailButton = nullptr;
+
+    //初始化界面
+    this->setupUi();
 }
 
 IDataOperationWidget::~IDataOperationWidget()

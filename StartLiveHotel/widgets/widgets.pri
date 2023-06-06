@@ -7,3 +7,4 @@ SOURCES += \
     $$PWD/iabstractwidget.cpp
 
 include(displayTableWidgets/displayTableWidgets.pri)
+include(roomWidgets/roomWidgets.pri)

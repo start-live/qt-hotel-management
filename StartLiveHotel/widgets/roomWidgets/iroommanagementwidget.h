@@ -1,24 +1,28 @@
 ﻿/*
- * 文件：itablestatusbar.h
- * 描述：表格操作，刷新、添加、打印
+ * 文件：iroommanagementwidget.h
+ * 描述：客房管理界面
  * 创建者：start-live
  * 时间：2023年06月06日
 */
 
-#ifndef ITABLEOPERATIONWIDGET_H
-#define ITABLEOPERATIONWIDGET_H
+#ifndef IROOMMANAGEMENTWIDGET_H
+#define IROOMMANAGEMENTWIDGET_H
 
 #include "widgets/iabstractwidget.h"
 
-class QHBoxLayout;
-class QPushButton;
+class QVBoxLayout;
+class QLabel;
+class IDataTableWidget;
 
-class ITableOperationWidget : public IAbstractWidget
+class IRoomManagementWidget : public IAbstractWidget
 {
     Q_OBJECT
 public:
-    explicit ITableOperationWidget(QWidget *parent = nullptr);
-    virtual ~ITableOperationWidget();
+    explicit IRoomManagementWidget(QWidget *parent = nullptr);
+    virtual ~IRoomManagementWidget();
+
+protected:
+    void initTable();
 
 protected:
     //分配内存
@@ -37,20 +41,11 @@ protected:
     virtual void release() override;
 
 signals:
-    void refresh();
-    void add();
-    void print();
-
-private slots:
-    void onRefreshButtonClicked();
-    void onAddButtonClicked();
-    void onPrintButtonClicked();
 
 private:
-    QHBoxLayout* m_pMainLayout;
-    QPushButton* m_pRefreshButton;
-    QPushButton* m_pAddButton;
-    QPushButton* m_pPrintButton;
+    QVBoxLayout* m_pMainLayout;
+    QLabel* m_pTitleLabel;
+    IDataTableWidget* m_pTableWidget;
 };
 
-#endif // ITABLEOPERATIONWIDGET_H
+#endif // IROOMMANAGEMENTWIDGET_H

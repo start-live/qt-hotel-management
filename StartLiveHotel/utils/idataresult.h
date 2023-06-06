@@ -15,7 +15,8 @@ enum class IResultCode
 {
     Node,
     Success,
-    Fail
+    Fail,
+    Error
 };
 
 class IDataResult : public QObject

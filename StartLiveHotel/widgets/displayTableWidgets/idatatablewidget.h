@@ -39,6 +39,7 @@ public:
     void setKeyList(const QStringList& keyList);
 
     void setModeNameList(const QStringList& modeNameList);
+    void setTableColumnNameList(const QStringList& columnNameList);
 
     void refreshData();
 

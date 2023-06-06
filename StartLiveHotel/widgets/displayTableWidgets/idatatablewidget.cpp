@@ -11,6 +11,7 @@
 #include "widgets/displayTableWidgets/idisplayinfowidget.h"
 #include "widgets/displayTableWidgets/itableoperationwidget.h"
 #include "widgets/displayTableWidgets/itablestatusbar.h"
+#include "widgets/displayTableWidgets/idataoperationwidget.h"
 
 #include "blls/iabstractbll.h"
 
@@ -73,6 +74,14 @@ void IDataTableWidget::setModeNameList(const QStringList &modeNameList)
         return;
 
     m_pSearchModeWidget->setModeNameList(modeNameList);
+}
+
+void IDataTableWidget::setTableColumnNameList(const QStringList &columnNameList)
+{
+    if (m_pModel == nullptr)
+        return;
+
+    m_pModel->setHorizontalHeaderLabels(columnNameList);
 }
 
 void IDataTableWidget::refreshData()
@@ -205,6 +214,7 @@ void IDataTableWidget::objectNameSetting()
 
 bool IDataTableWidget::decorate()
 {
+    m_pMainLayout->setSpacing(0);
 //    m_pMainLayout = nullptr;
 //    m_pKeywordWidget = nullptr;
     //m_pSearchModeWidget
@@ -257,9 +267,13 @@ void IDataTableWidget::refreshRecords(const QList<IDataSerialize> &recordList)
         m_pModel->insertRow(row);
         for (qint32 column = 0; column < count; column++)
         {
-            QModelIndex modeIndex = m_pModel->index(row, column);
-            m_pModel->setData(modeIndex, record.value(m_keyList[column]));
+            QModelIndex modelIndex = m_pModel->index(row, column);
+            m_pModel->setData(modelIndex, record.value(m_keyList[column]));
         }
+
+        QModelIndex modelIndex = m_pModel->index(row, count);
+        IDataOperationWidget* pOperationWidget = new IDataOperationWidget(this);
+        m_pTableView->setIndexWidget(modelIndex, pOperationWidget);
     }
 }
 

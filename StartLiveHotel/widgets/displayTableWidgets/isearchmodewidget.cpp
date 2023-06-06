@@ -1,6 +1,7 @@
 ﻿#include "isearchmodewidget.h"
 
 #include <QtWidgets/qboxlayout.h>
+#include <QtWidgets/qlayoutitem.h>
 #include <QtWidgets/qlabel.h>
 #include <QtWidgets/qcheckbox.h>
 
@@ -10,6 +11,7 @@ ISearchModeWidget::ISearchModeWidget(QWidget *parent)
     m_pMainLayout = nullptr;
     m_pModeLabel = nullptr;
     m_pAllCheck = nullptr;
+    m_pRightHorizontalSpacer = nullptr;
 
     //初始化界面
     this->setupUi();
@@ -27,6 +29,9 @@ QStringList ISearchModeWidget::modeNameList() const
 
 void ISearchModeWidget::setModeNameList(const QStringList &modeNameList)
 {
+    if (m_pMainLayout == nullptr)
+        return;
+
     //如果已经存在个数一样的模式
     qint32 count = m_modeCheckBoxList.count();
     if (count == modeNameList.count())
@@ -53,7 +58,7 @@ void ISearchModeWidget::setModeNameList(const QStringList &modeNameList)
         if (pCheckBox == nullptr)
             return;
 
-        m_pMainLayout->addWidget(pCheckBox);
+        m_pMainLayout->insertWidget(m_pMainLayout->count() - 2, pCheckBox);
         m_modeCheckBoxList.append(pCheckBox);
     }
 }
@@ -68,6 +73,10 @@ bool ISearchModeWidget::instance()
     I_INSTANCE(m_pMainLayout, QHBoxLayout, nullptr);
     I_INSTANCE(m_pModeLabel, QLabel, this);
     I_INSTANCE(m_pAllCheck, QCheckBox, this);
+
+    m_pRightHorizontalSpacer = new QSpacerItem(40, 20);
+    if (m_pRightHorizontalSpacer == nullptr)
+        return false;
 
     return true;
 }
@@ -87,6 +96,7 @@ void ISearchModeWidget::layout()
 {
     m_pMainLayout->addWidget(m_pModeLabel);
     m_pMainLayout->addWidget(m_pAllCheck);
+    m_pMainLayout->addItem(m_pRightHorizontalSpacer);
     this->setLayout(m_pMainLayout);
 }
 
@@ -116,6 +126,8 @@ bool ISearchModeWidget::decorate()
 
     m_pAllCheck->setChecked(true);
 
+    m_pRightHorizontalSpacer->changeSize(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
     this->setAttribute(Qt::WidgetAttribute::WA_StyledBackground);
 
     return true;
@@ -126,6 +138,7 @@ void ISearchModeWidget::release()
     I_RELEASE(m_pMainLayout);
     I_RELEASE(m_pModeLabel);
     I_RELEASE(m_pAllCheck);
+    I_RELEASE(m_pRightHorizontalSpacer);
 }
 
 void ISearchModeWidget::onCheckBoxClicked()

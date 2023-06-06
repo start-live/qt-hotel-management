@@ -11,6 +11,7 @@
 #include "widgets/iabstractwidget.h"
 
 class QHBoxLayout;
+class QSpacerItem;
 class QLabel;
 class QCheckBox;
 
@@ -52,6 +53,7 @@ private:
     QHBoxLayout* m_pMainLayout;
     QLabel* m_pModeLabel;
     QCheckBox* m_pAllCheck;
+    QSpacerItem* m_pRightHorizontalSpacer;
 
 private:
     QList<QCheckBox*> m_modeCheckBoxList;
