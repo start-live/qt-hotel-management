@@ -20,6 +20,10 @@ public:
     explicit IDisplayInfoWidget(QWidget *parent = nullptr);
     virtual ~IDisplayInfoWidget();
 
+    void setTotal(qint32 record);
+    void setCurrentFirst(qint32 record);
+    void setCurrentLast(qint32 record);
+
 protected:
     //分配内存
     virtual bool instance() override;

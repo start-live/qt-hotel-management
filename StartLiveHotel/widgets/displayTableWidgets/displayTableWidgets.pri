@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/idataoperationwidget.h \
     $$PWD/idatatablewidget.h \
     $$PWD/idisplayinfowidget.h \
     $$PWD/ikeywordwidget.h \
@@ -8,6 +9,7 @@ HEADERS += \
     $$PWD/itablestatusbar.h
 
 SOURCES += \
+    $$PWD/idataoperationwidget.cpp \
     $$PWD/idatatablewidget.cpp \
     $$PWD/idisplayinfowidget.cpp \
     $$PWD/ikeywordwidget.cpp \

@@ -26,6 +26,30 @@ IDisplayInfoWidget::~IDisplayInfoWidget()
 
 }
 
+void IDisplayInfoWidget::setTotal(qint32 record)
+{
+    if (m_pTotalLabel == nullptr)
+        return;
+
+    m_pTotalLabel->setText(QString::number(record));
+}
+
+void IDisplayInfoWidget::setCurrentFirst(qint32 record)
+{
+    if (m_pCurrentFirstLabel == nullptr)
+        return;
+
+    m_pCurrentFirstLabel->setText(QString::number(record));
+}
+
+void IDisplayInfoWidget::setCurrentLast(qint32 record)
+{
+    if (m_pCurrentLastLabel == nullptr)
+        return;
+
+    m_pCurrentLastLabel->setText(QString::number(record));
+}
+
 bool IDisplayInfoWidget::instance()
 {
     I_INSTANCE(m_pMainLayout, QHBoxLayout, nullptr);

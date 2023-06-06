@@ -20,12 +20,31 @@ class ITableOperationWidget;
 class QTableView;
 class ITableStatusBar;
 
+class QStandardItemModel;
+class IAbstractBLL;
+class IDataSerialize;
+class IDataResult;
+
 class IDataTableWidget : public IAbstractWidget
 {
     Q_OBJECT
 public:
     explicit IDataTableWidget(QWidget *parent = nullptr);
     virtual ~IDataTableWidget();
+
+    IAbstractBLL* pBLL() const;
+    void setDataBLL(IAbstractBLL* pBLL);
+
+    QStringList keyList() const;
+    void setKeyList(const QStringList& keyList);
+
+    void setModeNameList(const QStringList& modeNameList);
+
+    void refreshData();
+
+protected:
+    void refreshData(qint32 page, qint32 pageSize);
+    void initModel();
 
 protected:
     //分配内存
@@ -46,6 +65,8 @@ protected:
 signals:
 
 private slots:
+    void onDataBLLGetDatasResult(const IDataResult& result);
+    void refreshRecords(const QList<IDataSerialize>& recordList);
     void onKeywordWidgetSearch(const QString& keyword);
     void onSearchModeWidgetModeChanged(const QList<qint32>& modeList);
     void onTableOperationWidgetRefresh();
@@ -64,6 +85,11 @@ private:
     ITableOperationWidget* m_pTableOperationWidget;
     QTableView* m_pTableView;
     ITableStatusBar* m_pTableStatusBar;
+
+private:
+    QStandardItemModel* m_pModel;
+    IAbstractBLL* m_pDataBLL;
+    QStringList m_keyList;
 };
 
 #endif // IDATATABLEWIDGET_H

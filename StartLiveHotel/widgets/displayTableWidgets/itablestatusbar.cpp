@@ -162,23 +162,23 @@ bool ITableStatusBar::connect()
     result &= bool(connection);
 
     connection = QObject::connect(m_pFirstButton, SIGNAL(clicked())
-                             , this, SLOT(onFirstButtonClickd()));
+                             , this, SLOT(onFirstButtonClicked()));
     result &= bool(connection);
 
     connection = QObject::connect(m_pPreviousButton, SIGNAL(clicked())
-                             , this, SLOT(onPreviousButtonClickd()));
+                             , this, SLOT(onPreviousButtonClicked()));
     result &= bool(connection);
 
     connection = QObject::connect(m_pNextButton, SIGNAL(clicked())
-                             , this, SLOT(onNextButtonClickd()));
+                             , this, SLOT(onNextButtonClicked()));
     result &= bool(connection);
 
     connection = QObject::connect(m_pLastButton, SIGNAL(clicked())
-                             , this, SLOT(onLastButtonClickd()));
+                             , this, SLOT(onLastButtonClicked()));
     result &= bool(connection);
 
     connection = QObject::connect(m_pJumpButton, SIGNAL(clicked())
-                             , this, SLOT(onJumpButtonClickd()));
+                             , this, SLOT(onJumpButtonClicked()));
     result &= bool(connection);
 
     return result;
