@@ -54,8 +54,8 @@ void IDataTableWidget::setDataBLL(IAbstractBLL *pBLL)
         return;
 
     m_pDataBLL = pBLL;
-    QObject::connect(m_pDataBLL, SIGNAL(getDatasResult(const IDataResult&))
-                     , this, SLOT(onDataBLLGetDatasResult(const IDataResult&)));
+    QObject::connect(m_pDataBLL, SIGNAL(getDatasFinished(const IDataResult&))
+                     , this, SLOT(onDataBLLGetDatasFinished(const IDataResult&)));
 }
 
 QStringList IDataTableWidget::keyList() const
@@ -245,7 +245,7 @@ void IDataTableWidget::release()
     I_RELEASE(m_pTableStatusBar);
 }
 
-void IDataTableWidget::onDataBLLGetDatasResult(const IDataResult &result)
+void IDataTableWidget::onDataBLLGetDatasFinished(const IDataResult &result)
 {
     QList<IDataSerialize> recordList = result.data().value<QList<IDataSerialize>>();
     refreshRecords(recordList);

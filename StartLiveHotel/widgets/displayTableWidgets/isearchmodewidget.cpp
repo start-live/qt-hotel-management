@@ -58,7 +58,7 @@ void ISearchModeWidget::setModeNameList(const QStringList &modeNameList)
         if (pCheckBox == nullptr)
             return;
 
-        m_pMainLayout->insertWidget(m_pMainLayout->count() - 2, pCheckBox);
+        m_pMainLayout->insertWidget(m_pMainLayout->count() - 1, pCheckBox);
         m_modeCheckBoxList.append(pCheckBox);
     }
 }

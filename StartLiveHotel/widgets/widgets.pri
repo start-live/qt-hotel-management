@@ -8,3 +8,4 @@ SOURCES += \
 
 include(displayTableWidgets/displayTableWidgets.pri)
 include(roomWidgets/roomWidgets.pri)
+include(mainWidgets/mainWidgets.pri)

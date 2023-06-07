@@ -1,26 +1,25 @@
 ﻿/*
- * 文件：imainwidget.h
- * 描述：程序主界面，整个程序的入口实现
+ * 文件：idisplaywidget.h
+ * 描述：所有界面的展示管理
  * 创建者：start-live
- * 时间：2023年06月05日
+ * 时间：2023年06月07日
 */
 
-#ifndef IMAINWIDGET_H
-#define IMAINWIDGET_H
+#ifndef IDISPLAYWIDGET_H
+#define IDISPLAYWIDGET_H
 
 #include "widgets/iabstractwidget.h"
 
-class QHBoxLayout;
-class IOperationMenuBar;
-class IDisplayWidget;
+class QVBoxLayout;
+class ITitleWidget;
+class QTabWidget;
 
-class IMainWidget : public IAbstractWidget
+class IDisplayWidget : public IAbstractWidget
 {
     Q_OBJECT
-
 public:
-    explicit IMainWidget(QWidget *parent = nullptr);
-    virtual ~IMainWidget();
+    explicit IDisplayWidget(QWidget *parent = nullptr);
+    virtual ~IDisplayWidget();
 
 protected:
     //分配内存
@@ -38,10 +37,15 @@ protected:
     //如果内存分配失败，则对部分已经分配过内存的控件进行释放
     virtual void release() override;
 
+signals:
+
+private slots:
+
+
 private:
-    QHBoxLayout* m_pMainLayout;
-    IOperationMenuBar* m_pOperationMenuBar;
-    IDisplayWidget* m_pDisplayWidget;
+    QVBoxLayout* m_pMainLayout;
+    ITitleWidget* m_pTitleWidget;
+    QTabWidget* m_pTabWidget;
 };
 
-#endif // IMAINWIDGET_H
+#endif // IDISPLAYWIDGET_H

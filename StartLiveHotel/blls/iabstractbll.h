@@ -1,4 +1,11 @@
-﻿#ifndef IABSTRACTBLL_H
+﻿/*
+ * 文件：iabstractbll.h
+ * 描述：业务逻辑层抽象类，处理页面数据数据获取逻辑
+ * 创建者：start-live
+ * 时间：2023年06月06日
+*/
+
+#ifndef IABSTRACTBLL_H
 #define IABSTRACTBLL_H
 
 #include <QtCore/qobject.h>

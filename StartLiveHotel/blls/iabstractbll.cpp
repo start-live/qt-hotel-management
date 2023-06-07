@@ -122,8 +122,17 @@ void IAbstractBLL::onDALGetDataFinished(const QJsonObject &dataObject)
     IDataResult result;
     qint32 code = dataObject.value("code").toInt();
     QString message = dataObject.value("message").toString();
+    QJsonObject valueObject = dataObject.value("data").toObject();
+    IDataSerialize record;
+    for (QString key : m_keyList)
+    {
+        record.setValue(key, valueObject.value(key).toVariant());
+    }
+    QVariant data;
+    data.setValue(record);
     result.setCode(IResultCode(code));
     result.setMessage(message);
+    result.setData(data);
     emit getDataFinished(result);
 }
 
@@ -132,16 +141,17 @@ void IAbstractBLL::onDALGetDatasFinished(const QJsonObject &dataObject)
     IDataResult result;
     qint32 code = dataObject.value("code").toInt();
     QString message = dataObject.value("message").toString();
-    QJsonArray dataArray = dataObject.value("dataArray").toArray();
+    QJsonArray dataArray = dataObject.value("data").toArray();
     QList<IDataSerialize> recordList;
     for (QJsonValue value : dataArray)
     {
         QJsonObject obj = value.toObject();
-        IDataSerialize ds;
+        IDataSerialize record;
         for (QString key : m_keyList)
         {
-            ds.setValue(key, obj.value(key).toVariant());
+            record.setValue(key, obj.value(key).toVariant());
         }
+        recordList.append(record);
     }
     QVariant data;
     data.setValue(recordList);

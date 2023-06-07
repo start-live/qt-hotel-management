@@ -1,10 +1,11 @@
 ﻿#include "imainwidget.h"
-#include "widgets/roomWidgets/iroommanagementwidget.h"
-#include <QApplication>
+
+#include <QtWidgets/qapplication.h>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    IRoomManagementWidget w;
+    IMainWidget w;
     w.show();
     return a.exec();
 }

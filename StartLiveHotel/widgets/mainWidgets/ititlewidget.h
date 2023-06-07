@@ -1,26 +1,26 @@
 ﻿/*
- * 文件：imainwidget.h
- * 描述：程序主界面，整个程序的入口实现
+ * 文件：ititlewidget.h
+ * 描述：标题栏
  * 创建者：start-live
- * 时间：2023年06月05日
+ * 时间：2023年06月07日
 */
 
-#ifndef IMAINWIDGET_H
-#define IMAINWIDGET_H
+#ifndef ITITLEWIDGET_H
+#define ITITLEWIDGET_H
 
 #include "widgets/iabstractwidget.h"
 
 class QHBoxLayout;
-class IOperationMenuBar;
-class IDisplayWidget;
+class QSpacerItem;
+class QLabel;
+class QPushButton;
 
-class IMainWidget : public IAbstractWidget
+class ITitleWidget : public IAbstractWidget
 {
     Q_OBJECT
-
 public:
-    explicit IMainWidget(QWidget *parent = nullptr);
-    virtual ~IMainWidget();
+    explicit ITitleWidget(QWidget *parent = nullptr);
+    virtual ~ITitleWidget();
 
 protected:
     //分配内存
@@ -38,10 +38,23 @@ protected:
     //如果内存分配失败，则对部分已经分配过内存的控件进行释放
     virtual void release() override;
 
+signals:
+
+private slots:
+    void onLoginButtonClicked();
+    void onLanguageButtonClicked();
+    void onAboutButtonClicked();
+
 private:
     QHBoxLayout* m_pMainLayout;
-    IOperationMenuBar* m_pOperationMenuBar;
-    IDisplayWidget* m_pDisplayWidget;
+    QSpacerItem* m_pLeftHorizontalSpacer;
+    QLabel* m_pCityLabel;
+    QLabel* m_pWeatherLabel;
+    QLabel* m_pTemperatureLabel;
+    QLabel* m_pDateTimeLabel;
+    QPushButton* m_pLoginButton;
+    QPushButton* m_pLanguageButton;
+    QPushButton* m_pAboutButton;
 };
 
-#endif // IMAINWIDGET_H
+#endif // ITITLEWIDGET_H

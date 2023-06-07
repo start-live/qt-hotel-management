@@ -97,6 +97,7 @@ void IRoomManagementWidget::objectNameSetting()
     m_pMainLayout->setObjectName("MainLayout");
     m_pTitleLabel->setObjectName("TitleLabel");
     m_pTableWidget->setObjectName("TableWidget");
+    this->setObjectName("RoomManagement");
 }
 
 bool IRoomManagementWidget::decorate()

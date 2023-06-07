@@ -66,7 +66,7 @@ protected:
 signals:
 
 private slots:
-    void onDataBLLGetDatasResult(const IDataResult& result);
+    void onDataBLLGetDatasFinished(const IDataResult& result);
     void refreshRecords(const QList<IDataSerialize>& recordList);
     void onKeywordWidgetSearch(const QString& keyword);
     void onSearchModeWidgetModeChanged(const QList<qint32>& modeList);

@@ -1,4 +1,11 @@
-﻿#ifndef IROOMBLL_H
+﻿/*
+ * 文件：iroombll.h
+ * 描述：客服数据业务逻辑处理
+ * 创建者：start-live
+ * 时间：2023年06月06日
+*/
+
+#ifndef IROOMBLL_H
 #define IROOMBLL_H
 
 #include "iabstractbll.h"

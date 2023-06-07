@@ -13,17 +13,101 @@ IAbstractDAL::~IAbstractDAL()
 
 }
 
-void IAbstractDAL::getDatas(const QString &condition, qint32 page, qint32 pageSize)
+QNetworkAccessManager *IAbstractDAL::manager() const
 {
-    if (m_pNetwordAccessManager == nullptr)
-        return;
+    return m_pNetwordAccessManager;
+}
 
-    QString urlStr = QString("https://www.baidu.com/hotel?condition=%1&page=%2&pageSize=%3")
-            .arg(condition, QString::number(page), QString::number(pageSize));
-    QUrl url(urlStr);
-    QNetworkRequest request(url);
-    QNetworkReply* pReply = m_pNetwordAccessManager->get(request);
-    connect(pReply, &QNetworkReply::finished, this, &IAbstractDAL::onGetDatasFinished);
+void IAbstractDAL::onAddDataFinished()
+{
+    QNetworkReply* pReply = qobject_cast<QNetworkReply*>(sender());
+    QJsonObject dataObject;
+    if (pReply->error() == QNetworkReply::NoError)
+    {
+        QByteArray data = pReply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(data);
+        if (jsonDoc.isEmpty())
+            return;
+
+        dataObject = jsonDoc.object();
+    }
+    else
+    {
+        QString errorString = pReply->errorString();
+        dataObject.insert("error", errorString);
+        qDebug() << errorString;
+    }
+    pReply->deleteLater();
+    emit addDataFinished(dataObject);
+}
+
+void IAbstractDAL::onDeleteDataFinished()
+{
+    QNetworkReply* pReply = qobject_cast<QNetworkReply*>(sender());
+    QJsonObject dataObject;
+    if (pReply->error() == QNetworkReply::NoError)
+    {
+        QByteArray data = pReply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(data);
+        if (jsonDoc.isEmpty())
+            return;
+
+        dataObject = jsonDoc.object();
+    }
+    else
+    {
+        QString errorString = pReply->errorString();
+        dataObject.insert("error", errorString);
+        qDebug() << errorString;
+    }
+    pReply->deleteLater();
+    emit deleteDataFinished(dataObject);
+}
+
+void IAbstractDAL::onUpdateDataFinished()
+{
+    QNetworkReply* pReply = qobject_cast<QNetworkReply*>(sender());
+    QJsonObject dataObject;
+    if (pReply->error() == QNetworkReply::NoError)
+    {
+        QByteArray data = pReply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(data);
+        if (jsonDoc.isEmpty())
+            return;
+
+        dataObject = jsonDoc.object();
+    }
+    else
+    {
+        QString errorString = pReply->errorString();
+        dataObject.insert("error", errorString);
+        qDebug() << errorString;
+    }
+    pReply->deleteLater();
+    emit updateDataFinished(dataObject);
+}
+
+void IAbstractDAL::onGetDataFinished()
+{
+    QNetworkReply* pReply = qobject_cast<QNetworkReply*>(sender());
+    QJsonObject dataObject;
+    if (pReply->error() == QNetworkReply::NoError)
+    {
+        QByteArray data = pReply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromBinaryData(data);
+        if (jsonDoc.isEmpty())
+            return;
+
+        dataObject = jsonDoc.object();
+    }
+    else
+    {
+        QString errorString = pReply->errorString();
+        dataObject.insert("error", errorString);
+        qDebug() << errorString;
+    }
+    pReply->deleteLater();
+    emit getDataFinished(dataObject);
 }
 
 void IAbstractDAL::onGetDatasFinished()
